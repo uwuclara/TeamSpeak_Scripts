@@ -1,0 +1,12 @@
+{
+
+  "require":
+  {
+
+    "sinusbot/sinusbot-api-php": "dev-master",
+    "planetteamspeak/ts3-php-framework": "^1.1",
+    "ext-json": "*"
+
+  }
+
+}

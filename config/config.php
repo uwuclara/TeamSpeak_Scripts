@@ -1,0 +1,75 @@
+<?php
+
+namespace TS_Scripts;
+
+//set timezone
+date_default_timezone_set("Europe/Bratislava");
+
+class Config
+{
+
+    private array $config;
+
+    public function __construct()
+    {
+
+        $this->config = array
+        (
+
+            "Cache_file_url"        =>     __DIR__ ."/../cached-files",
+
+            "TS_Host"               =>      "localhost",
+            "TS_Server_Query_Port"  =>      "10011",
+            "TS_Server_Port"        =>      "9987",
+
+            "TS_Username"           =>      "serveradmin",
+            "TS_Password"           =>      "foo",
+
+            "Bot_Host"              =>      "localhost:8080",
+
+            "Bot_Port"              =>      "8087",
+
+            "Bot_Username"          =>      "admin",
+            "Bot_Password"          =>      "foo",
+
+            //optional
+            "Bot_Rank_Instance"     =>      ""
+
+        );
+
+        $empty = [];
+
+        foreach($this->config as $key => $value)
+        {
+
+            if(empty($value) AND $key !== "Bot_Rank_Instance")
+            {
+
+                $empty = $key;
+
+            }
+
+        }
+
+        if(!empty($empty))
+        {
+
+            $missing_values = implode(", ", $empty);
+
+            echo date("d.m.y H:i:s")." | "." Missing these values: ".$missing_values;
+
+            exit;
+
+        }
+
+
+    }
+
+    public function getConfig()
+    {
+
+        return (array) $this->config;
+
+    }
+
+}

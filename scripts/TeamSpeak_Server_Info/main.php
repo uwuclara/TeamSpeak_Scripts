@@ -35,8 +35,33 @@ if(!file_exists($config['Cache_file_url']."/ts_server_info.json") OR (time() - f
             {
 
                 $ts_info_online = "Online";
-                $ts_info_name = $ts3->virtualserver_name;
-                $ts_info_players = $ts3->virtualserver_clientsonline . " / " . $ts3->virtualserver_maxclients;
+
+                if(!empty($ts3->__get("virtualserver_name")))
+                {
+
+                    $ts_info_name = $ts3->__get("virtualserver_name");
+
+                }
+                else
+                {
+
+                    $ts_info_name = "Couldn't fetch server's name!";
+
+                }
+
+                if(!empty($ts3->__get("virtualserver_clientsonline")) AND !empty($ts3->__get("virtualserver_maxclients")))
+                {
+
+                    $ts_info_players = $ts3->__get("virtualserver_clientsonline") . " / " . $ts3->__get("virtualserver_maxclients");
+
+                }
+                else
+                {
+
+                    $ts_info_players = "Couldn't fetch client count!";
+
+                }
+
 
             }
             elseif($ts3->getProperty("virtualserver_status")->toString() == "offline")

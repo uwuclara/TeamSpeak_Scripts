@@ -85,8 +85,8 @@ if(!file_exists($config['Cache_file_url']."/ts_server_info.json") OR (time() - f
         catch(TeamSpeak3_Exception $error)
         {
 
-            $ts_info_online = "Server Error";
-            $ts_info_name = "Couldn't fetch online status";
+            $ts_info_online = "Couldn't fetch online status";
+            $ts_info_name = $error->getMessage();
             $ts_info_players = "0/0";
 
         }
@@ -95,8 +95,8 @@ if(!file_exists($config['Cache_file_url']."/ts_server_info.json") OR (time() - f
     catch(TeamSpeak3_Exception $error)
     {
 
-        $ts_info_online = "Server Offline";
-        $ts_info_name = "Can't connect to the server";
+        $ts_info_online = "Can't connect to the server";
+        $ts_info_name = $error->getMessage();
         $ts_info_players = "0/0";
 
     }

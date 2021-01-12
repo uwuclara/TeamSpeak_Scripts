@@ -45,7 +45,7 @@ if(!file_exists($config['Cache_file_url']."/ranks.json") OR (time() - filemtime(
         if($error->getMessage() === "Error: 404 (Not Found)")
         {
 
-            $ranks = "Instance rank UUID is wrong in config";
+            $ranks = "Instance rank UUID is wrong in config or rank plugin is not installed!";
 
         }
         else

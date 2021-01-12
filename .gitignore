@@ -1,0 +1,4 @@
+/config/config.php
+/.idea
+*.json
+composer.lock

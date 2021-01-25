@@ -36,6 +36,15 @@ if(!file_exists($config['Cache_file_url']."/bots.json") OR (time() - filemtime($
         foreach($instances as $instance)
         {
 
+            $object_vars = get_object_vars($instance);
+
+            if (!isset($object_vars['uuid']))
+            {
+
+                $object_vars['uuid'] = NULL;
+
+            }
+
             $bot_nick = $instance->getName();
 
             $is_running = $instance->isRunning();
@@ -89,7 +98,8 @@ if(!file_exists($config['Cache_file_url']."/bots.json") OR (time() - filemtime($
             }
 
             //create and add to main json
-            $bot_info['Bot'][(string)$bot_nick] = array(
+            $bot_info['Bot'][$object_vars['uuid']] = array(
+                "Name"  => (string)$bot_nick,
                 "Status" => (string)$bot_status,
                 "Playing" => (string)$bot_playing
             );
